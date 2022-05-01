@@ -15,31 +15,35 @@ public class BalanceBrackets {
 
         if(inputString.contains("(") || inputString.contains(")") || inputString.contains("{") || inputString.contains("}") || inputString.contains("[") || inputString.contains("]")){
             char[] inputStringArray = inputString.toCharArray();
-            for (char c : inputStringArray) {
-                switch (c) {
+            for (int i = 0; i < inputStringArray.length; i++) {
+                char poppedChar;
+                switch (inputStringArray[i]) {
                     case '(':
                     case '{':
                     case '[':
-                        bracketStack.push(c);
+                        bracketStack.push(inputStringArray[i]);
                         break;
                     case ')':
                         if (!bracketStack.isEmpty()) {
-                            if (bracketStack.peek() == '(') {
-                                bracketStack.pop();
+                            poppedChar = bracketStack.pop();
+                            if (poppedChar == '{' || poppedChar == '[') {
+                                return false;
                             }
                         }
                         break;
                     case '}':
                         if (!bracketStack.isEmpty()) {
-                            if (bracketStack.peek() == '{') {
-                                bracketStack.pop();
+                            poppedChar = bracketStack.pop();
+                            if (poppedChar == '(' || poppedChar == '[') {
+                                return false;
                             }
                         }
                         break;
                     case ']':
                         if (!bracketStack.isEmpty()) {
-                            if (bracketStack.peek() == '[') {
-                                bracketStack.pop();
+                            poppedChar = bracketStack.pop();
+                            if (poppedChar == '(' || poppedChar == '{') {
+                                return false;
                             }
                         }
                         break;
@@ -58,14 +62,29 @@ public class BalanceBrackets {
 
     public static void main(String[] args) {
         Scanner scannerInput = new Scanner(System.in);
-        System.out.println("Enter Brackets String");
-        String inputStringValue = scannerInput.nextLine();
 
-        if(isStackBalanced(inputStringValue)){
-            System.out.println("The entered String has Balanced Brackets");
+        int testCases = 0;
+        do{
+            System.out.println("Enter number of Test Cases");
+            testCases = Integer.parseInt(scannerInput.nextLine());
+        } while(testCases == 0);
+        int testCasesCounter = testCases;
+        String[] testCasesArray = new String[testCasesCounter];
 
-        } else {
-            System.out.println("The entered String do not contain Balanced Brackets");
+        for(int j = 0; j < testCasesCounter; j++){
+            System.out.println("Enter Test Case ("+(j+1)+"):");
+            testCasesArray[j] = scannerInput.nextLine();
+        }
+
+        for(int k = 0; k < testCasesArray.length; k++) {
+            System.out.println("Test Case ("+(k+1)+"): STRING - "+testCasesArray[k]);
+            if(isStackBalanced(testCasesArray[k])){
+                System.out.println("The entered String has Balanced Brackets");
+
+            } else {
+                System.out.println("The entered String do not contain Balanced Brackets");
+            }
+            System.out.println();
         }
     }
 
