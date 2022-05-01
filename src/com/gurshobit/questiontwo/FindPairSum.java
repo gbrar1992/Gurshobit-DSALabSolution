@@ -1,12 +1,11 @@
 package com.gurshobit.questiontwo;
 
 import java.util.ArrayList;
-import java.util.Scanner;;
+import java.util.Scanner;
 
 public class FindPairSum {
     Node treeRoot;
-    private ArrayList<Integer> listOne = new ArrayList<>();
-    private ArrayList<Integer> listTwo;
+    private final ArrayList<Integer> listOne = new ArrayList<>();
 
     FindPairSum(){
         treeRoot = null;
@@ -43,7 +42,7 @@ public class FindPairSum {
     }
 
     boolean isPairOccurs(int sum){
-        listTwo = convertToList(treeRoot, listOne);
+        ArrayList<Integer> listTwo = convertToList(treeRoot, listOne);
         int startPointer = 0;
         int endPointer = listTwo.size() - 1;
         while(startPointer < endPointer){
@@ -86,7 +85,7 @@ public class FindPairSum {
             testCases = Integer.parseInt(scannerInput.nextLine());
         } while(testCases == 0);
         int testCasesCounter = testCases;
-        int testCasesArray[] = new int[testCasesCounter];
+        int[] testCasesArray = new int[testCasesCounter];
 
         for(int j = 0; j < testCasesCounter; j++){
             System.out.println("Enter Test Case ("+(j+1)+"):");

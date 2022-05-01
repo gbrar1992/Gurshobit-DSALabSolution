@@ -14,31 +14,31 @@ public class BalanceBrackets {
         }
 
         if(inputString.contains("(") || inputString.contains(")") || inputString.contains("{") || inputString.contains("}") || inputString.contains("[") || inputString.contains("]")){
-            char inputStringArray[] = inputString.toCharArray();
-            for(int i = 0; i < inputStringArray.length; i++){
-                switch (inputStringArray[i]){
-                    case '(' :
-                    case '{' :
-                    case '[' :
-                        bracketStack.push(inputStringArray[i]);
+            char[] inputStringArray = inputString.toCharArray();
+            for (char c : inputStringArray) {
+                switch (c) {
+                    case '(':
+                    case '{':
+                    case '[':
+                        bracketStack.push(c);
                         break;
-                    case ')' :
-                        if(!bracketStack.isEmpty()){
-                            if(bracketStack.peek() == '('){
+                    case ')':
+                        if (!bracketStack.isEmpty()) {
+                            if (bracketStack.peek() == '(') {
                                 bracketStack.pop();
                             }
                         }
                         break;
-                    case '}' :
-                        if(!bracketStack.isEmpty()){
-                            if(bracketStack.peek() == '{'){
+                    case '}':
+                        if (!bracketStack.isEmpty()) {
+                            if (bracketStack.peek() == '{') {
                                 bracketStack.pop();
                             }
                         }
                         break;
-                    case ']' :
-                        if(!bracketStack.isEmpty()){
-                            if(bracketStack.peek() == '['){
+                    case ']':
+                        if (!bracketStack.isEmpty()) {
+                            if (bracketStack.peek() == '[') {
                                 bracketStack.pop();
                             }
                         }
@@ -53,11 +53,7 @@ public class BalanceBrackets {
             return false;
         }
 
-        if(!bracketStack.isEmpty()){
-            return false;
-        }
-
-        return true;
+        return bracketStack.isEmpty();
     }
 
     public static void main(String[] args) {
