@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class FindPairSum {
     Node treeRoot;
-    private final ArrayList<Integer> listOne = new ArrayList<>();
 
     FindPairSum(){
         treeRoot = null;
@@ -42,6 +41,7 @@ public class FindPairSum {
     }
 
     boolean isPairOccurs(int sum){
+        ArrayList<Integer> listOne = new ArrayList<>();
         ArrayList<Integer> listTwo = convertToList(treeRoot, listOne);
         int startPointer = 0;
         int endPointer = listTwo.size() - 1;
