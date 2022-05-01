@@ -4,9 +4,9 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class BalanceBrackets {
-    public static Stack<Character> bracketStack = new Stack<>();
 
     public static boolean isStackBalanced(String inputString){
+        Stack<Character> bracketStack = new Stack<>();
 
         if(inputString == null || inputString.toCharArray().length == 0 ){
             System.out.println("String is empty");
@@ -23,32 +23,35 @@ public class BalanceBrackets {
                     case '[':
                         bracketStack.push(inputStringArray[i]);
                         break;
-                    case ')':
-                        if (!bracketStack.isEmpty()) {
-                            poppedChar = bracketStack.pop();
-                            if (poppedChar == '{' || poppedChar == '[') {
-                                return false;
-                            }
+                   case ')':
+                        if (bracketStack.isEmpty()) {
+                           return false;
+                        }
+                        poppedChar = bracketStack.pop();
+                        if (poppedChar == '{' || poppedChar == '[') {
+                            return false;
                         }
                         break;
                     case '}':
-                        if (!bracketStack.isEmpty()) {
-                            poppedChar = bracketStack.pop();
-                            if (poppedChar == '(' || poppedChar == '[') {
-                                return false;
-                            }
+                        if (bracketStack.isEmpty()) {
+                            return false;
+                        }
+                        poppedChar = bracketStack.pop();
+                        if (poppedChar == '(' || poppedChar == '[') {
+                            return false;
                         }
                         break;
                     case ']':
-                        if (!bracketStack.isEmpty()) {
-                            poppedChar = bracketStack.pop();
-                            if (poppedChar == '(' || poppedChar == '{') {
-                                return false;
-                            }
+                        if (bracketStack.isEmpty()) {
+                            return false;
+                        }
+                        poppedChar = bracketStack.pop();
+                        if (poppedChar == '(' || poppedChar == '{') {
+                            return false;
                         }
                         break;
                     default:
-                        System.out.println("Invalid String");
+                        System.out.println("Invalid Characters in string");
                         return false;
                 }
             }
@@ -57,13 +60,14 @@ public class BalanceBrackets {
             return false;
         }
 
-        return bracketStack.isEmpty();
+        return (bracketStack.isEmpty());
     }
 
     public static void main(String[] args) {
         Scanner scannerInput = new Scanner(System.in);
 
         int testCases = 0;
+
         do{
             System.out.println("Enter number of Test Cases");
             testCases = Integer.parseInt(scannerInput.nextLine());
@@ -87,5 +91,4 @@ public class BalanceBrackets {
             System.out.println();
         }
     }
-
 }
