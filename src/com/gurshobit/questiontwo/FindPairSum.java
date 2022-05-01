@@ -45,25 +45,25 @@ public class FindPairSum {
         ArrayList<Integer> listTwo = convertToList(treeRoot, listOne);
         int startPointer = 0;
         int endPointer = listTwo.size() - 1;
-        while(startPointer < endPointer){
+        boolean found = false;
+        while(startPointer < endPointer && endPointer >= 0){
             int elementOne = listTwo.get(startPointer);
             int elementTwo = listTwo.get(endPointer);
 
             if( elementOne + elementTwo  == sum){
                 System.out.println("Pair ("+elementOne+","+elementTwo+") has sum of "+sum);
-                return true;
-            }
-
-            if (elementOne + elementTwo < sum) {
                 startPointer++;
-            }
-
-            if (elementOne + elementTwo > sum) {
+                endPointer--;
+                found = true;
+            } else if (elementOne + elementTwo < sum) {
+                startPointer++;
+            } else {
                 endPointer --;
             }
+
         }
 
-        return false;
+        return found;
     }
 
 
