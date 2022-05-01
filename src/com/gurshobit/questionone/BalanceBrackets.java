@@ -45,6 +45,7 @@ public class BalanceBrackets {
                         break;
                     default:
                         System.out.println("Invalid String");
+                        return false;
                 }
             }
         } else {
